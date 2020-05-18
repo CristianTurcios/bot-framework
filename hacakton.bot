@@ -1,0 +1,18 @@
+{
+    "name": "hacakton",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages",
+            "id": "1e4fdca0-995d-11ea-a43c-7f97e932aaa3",
+            "name": "localhost:3978/api/messages"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\Users\\cesar\\Programming\\hackaton2020\\bot-framework\\hacakton.bot",
+    "overrides": null
+}
