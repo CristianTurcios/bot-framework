@@ -1,15 +1,19 @@
 import { ActivityHandler, MessageFactory } from 'botbuilder';
-import { Avaamo } from './helpers/avaamo';
+import { Avaamo } from './helpers/Avaamo';
 
 export class EchoBot extends ActivityHandler {
     constructor() {
         super();
         this.onMessage(async (context, next) => {
-            const replyText = `Echo: ${context.activity.text}`;
+            let replyText = `Echo: ${context.activity.text}`;
+            replyText = context.activity.text ? context.activity.text : context.activity.value[Object.keys(context.activity.value)[0]];
+
             try {
                 const avaamo = new Avaamo();
-                const avaamoResponse = await avaamo.getAvaamoResponse(context.activity.text);
-                avaamoResponse.forEach(async (element) => await context.sendActivity(MessageFactory.text(element.text, element.text)));
+                const user = context.activity.from;
+                const avaamoResponse = await avaamo.getAvaamoResponse(replyText, user);
+                await context.sendActivity(avaamoResponse);
+
             } catch (error) {
                 console.log('error', error);
                 await context.sendActivity(MessageFactory.text(replyText, replyText));
